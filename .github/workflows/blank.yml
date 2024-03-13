@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Flyway migrations
         run: |
-          ./flyway-8.0.0/flyway -url="jdbc:snowflake://your-account.region.snowflakecomputing.com/?db=your_database&schema=your_schema" -user=${{ secrets.SNOWFLAKE_USER }} -password=${{ secrets.SNOWFLAKE_PASSWORD }} migrate
+          ./flyway-8.0.0/flyway -url="jdbc:snowflake://gu65013.europe-west4.gcp.snowflakecomputing.com/?db=prod&schema=public" -user=whyomkar -password=Omkar123 migrate
 
       - name: Execute Snowflake SQL scripts
         run: |
