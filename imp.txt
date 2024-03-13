@@ -1,0 +1,2 @@
+set JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
+flyway -color=always -configFiles=./conf/prod.conf -X migrate
