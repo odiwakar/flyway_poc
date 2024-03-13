@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Flyway migrations
         run: |
-          ./flyway-8.0.0/flyway -url="jdbc:snowflake://gu65013.europe-west4.gcp.snowflakecomputing.com/?db=prod&schema=public" -user=whyomkar -Omkar123 repair
+          ./flyway-8.0.0/flyway -url="jdbc:snowflake://gu65013.europe-west4.gcp.snowflakecomputing.com/?db=prod&schema=public" -user=whyomkar -*** repair
 
 
       - name: Execute Snowflake SQL scripts
