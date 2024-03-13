@@ -13,7 +13,7 @@ insert into raw_table(id,name_field,text_field)
             (14,'name-14','text-14'),
             (15,'name-15','text-15');
 
-create or replace view land_raw_view as 
+create or replace view land_raw_view_ as 
     select 'land' as layer, id,name_field,text_field  from ${land}.land_table
     union all 
     select 'raw' as layer, id,name_field,text_field  from raw_table;
