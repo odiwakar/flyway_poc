@@ -1,0 +1,25 @@
+name: Database Migrations
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Flyway
+        uses: wofg/gha-flyway@v2
+        with:
+          url: jdbc:snowflake://gu65013.europe-west4.gcp.snowflakecomputing.com/?db=prod&schema=public
+          user: whyomkar
+          password: Omkar123
+          migrationsPath: ./db/migrations
+
+      - name: Run Flyway migrations
+        run: flyway -configFiles=./conf/prod.conf -X migrate
