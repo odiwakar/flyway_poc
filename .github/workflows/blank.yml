@@ -13,13 +13,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Flyway
-        uses: wofg/gha-flyway@v2
+      - name: Set up Java
+        uses: actions/setup-java@v2
         with:
-          url: jdbc:snowflake://gu65013.europe-west4.gcp.snowflakecomputing.com/?db=prod&schema=public
-          user: whyomkar
-          password: Omkar123
-          migrationsPath: ./db/migrations
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Download and unzip Flyway
+        run: |
+          curl -LJO https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.0.0/flyway-commandline-8.0.0-linux-x64.tar.gz
+          tar -xzf flyway-commandline-8.0.0-linux-x64.tar.gz
+
+      - name: Set up Snowflake JDBC driver
+        run: |
+          mkdir -p $HOME/.flyway/drivers
+          curl -LJO https://repo1.maven.org/maven2/net/snowflake/snowflake-jdbc/3.15.1/snowflake-jdbc-3.15.1.jar
+          mv snowflake-jdbc-3.15.1.jar $HOME/.flyway/drivers/
 
       - name: Run Flyway migrations
-        run: flyway -configFiles=./conf/prod.conf -X migrate
+        run: |
+          ./flyway-8.0.0/flyway -url="jdbc:snowflake://your-account.region.snowflakecomputing.com/?db=your_database&schema=your_schema" -user=${{ secrets.SNOWFLAKE_USER }} -password=${{ secrets.SNOWFLAKE_PASSWORD }} migrate
+
+      - name: Execute Snowflake SQL scripts
+        run: |
+          # Example of running SQL scripts using SnowSQL or any other Snowflake client
+          # Replace with your Snowflake SQL execution command
+          snowsql -a KSKRCMH-EL40506 -u whyomkar -p Omkar123 -d PROD -s PUBLIC -f flyway_poc\sql\phase1
