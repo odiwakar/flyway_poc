@@ -33,6 +33,12 @@ jobs:
       - name: Run Flyway migrations
         run: |
           ./flyway-8.0.0/flyway -url="jdbc:snowflake://gu65013.europe-west4.gcp.snowflakecomputing.com/?db=prod&schema=public" -user=whyomkar -password=Omkar123 repair
+      
+      - name: Install SnowSQL
+        run: |
+          curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.18-linux_x86_64.bash
+          bash snowsql-1.2.18-linux_x86_64.bash
+          rm snowsql-1.2.18-linux_x86_64.bash
 
 
       - name: Execute Snowflake SQL scripts
