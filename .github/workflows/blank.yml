@@ -33,4 +33,4 @@ jobs:
 
       - name: Run Flyway Migrations
         run: |
-          flyway -configFiles=./conf/prod.conf migrate
+          flyway -color=always -configFiles=./conf/prod.conf -X migrate
