@@ -27,7 +27,7 @@ jobs:
 
       - name: Configure Flyway
         run: |
-          echo "flyway.url=jdbc:snowflake://qs15547.ap-south-1.aws.snowflakecomputing.com" >> flyway.conf
+          echo "flyway.url=jdbc:snowflake://DZKGCZJ-MV09192.snowflakecomputing.com" >> flyway.conf
           echo "flyway.user=omkartram" >> flyway.conf
           echo "flyway.password=Omkar123" >> flyway.conf
           echo "flyway.locations=filesystem:sql" >> flyway.conf
