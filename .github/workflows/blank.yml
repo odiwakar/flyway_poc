@@ -34,4 +34,4 @@ jobs:
 
       - name: Run Flyway Migrations
         run: |
-          flyway -configFiles=./conf/prod.conf migrate
+          flyway -outOfOrder=true -url=https://qs15547.ap-south-1.aws.snowflakecomputing.com -user= omkartram -password=Omkar123 -initSql="USE ROLE ACCOUNTADMIN;USE WAREHOUSE PROD_TRANSFORMER;USE DATABASE ALYNE_PROD;USE SCHEMA UTIL;" -configFiles=configs/prod_placeholders.conf migrate
