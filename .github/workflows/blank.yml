@@ -40,4 +40,4 @@ jobs:
          rm snowsql-1.2.18-linux_x86_64.bash
       - name: Execute Snowflake SQL scripts
         run: |
-          snowsql -a DZKGCZJ-MV09192 -u omkartram -p "Omkar123" -d prod_flyway -s public -f flyway_poc/sql/phase1
+          
