@@ -17,14 +17,20 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
+          distribution: 'adopt'
 
       - name: Configure Flyway
         run: |
           echo "flyway.url=jdbc:snowflake://qs15547.ap-south-1.aws.snowflakecomputing.com" >> flyway.conf
-          echo "flyway.user= omkartram" >> flyway.conf
+          echo "flyway.user=omkartram" >> flyway.conf
           echo "flyway.password= Omkar123" >> flyway.conf
-          echo "flyway.locations=filesystem:sql/phase1" >> flyway.conf
+          echo "flyway.locations=filesystem:./db/migration" >> flyway.conf
+
+      - name: Install Flyway CLI
+        run: |
+          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.5.7/flyway-commandline-8.5.7-linux-x64.tar.gz | tar xvz
+          export PATH="$PATH:$PWD/flyway-8.5.7"
 
       - name: Run Flyway Migrations
         run: |
-          flyway -configFiles=./conf/prod.conf  -X migrate
+          flyway -configFiles=./conf/prod.conf -X migrate
