@@ -23,7 +23,8 @@ jobs:
       # Runs a single command using the runners shell
       
 
-      - name: Run DBT seed and Generate output
+      - name: flyway-migrate
         run: |
+            export JAVA_ARGS=--add-opens=java.base/java.nio=ALL-UNNAMED
             flyway -configFiles=conf/prod.conf -X migrate
         shell: bash
